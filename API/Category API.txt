@@ -1,0 +1,45 @@
+Category API
+ unauthenticated create request with
+   valid category
+     - returns success status 
+     - returns category details including new id 
+     - is saved in database 
+   empty name
+     - returns invalid status 
+     - returns validation message 
+   name longer than 15 chars in length
+     - returns invalid status 
+     - returns validation message 
+   duplicate name
+     - returns invalid status 
+     - returns validation message 
+ unauthenticated get request with
+   no parameters
+     - lists all categories in alphabetical order 
+   valid category id
+     - returns success status 
+     - returns the expected category 
+   invalid category id
+     - returns not found status 
+ unauthenticated update request with
+   valid category
+     - returns success status 
+     - returns category details 
+     - is updated in database 
+     - only updates specified record 
+   empty category name
+     - returns invalid status 
+     - returns validation message 
+   category name longer than 15 chars in length
+     - returns invalid status 
+     - returns validation message 
+   duplicate category name
+     - returns invalid status 
+     - returns validation message 
+ unauthenticated delete request with
+   valid category id
+     - returns success status 
+     - returns category details 
+     - is deleted from database 
+   invalid category id
+     - returns not found status
