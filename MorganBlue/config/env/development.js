@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/morganblue-dev',
+	db: 'mongodb://localhost/morganBlue-dev',
 	app: {
-		title: 'morganblue-dec'
+		title: 'morganBlue-dec'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

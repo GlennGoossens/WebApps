@@ -2,8 +2,8 @@
 
 module.exports = {
 	app: {
-		title: 'morganblue',
-		description: 'productmanager',
+		title: 'morganBlue',
+		description: 'product manager',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
