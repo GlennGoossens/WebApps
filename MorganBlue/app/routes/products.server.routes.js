@@ -14,6 +14,6 @@ module.exports = function(app) {
 		.put(apiAuth, users.requiresLogin, products.update)
 		.delete(apiAuth, users.requiresLogin, products.delete);
 
-	// Finish by binding the article middleware
+
 	app.param('productId', products.getByID);
 };

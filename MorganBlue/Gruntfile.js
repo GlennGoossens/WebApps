@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = function(grunt) {
-	// Unified Watch Object
 	var watchFiles = {
 		serverViews: ['app/views/**/*.*'],
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
@@ -11,7 +10,6 @@ module.exports = function(grunt) {
 		mochaTests: ['app/tests/**/*.js']
 	};
 
-	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		watch: {
@@ -142,13 +140,10 @@ module.exports = function(grunt) {
 		}
 	});
 
-	// Load NPM tasks
 	require('load-grunt-tasks')(grunt);
 
-	// Making grunt default to force in order not to break the project.
 	grunt.option('force', true);
 
-	// A Task for loading the configuration object
 	grunt.task.registerTask('loadConfig', 'Task that loads the config into a grunt option.', function() {
 		var init = require('./config/init')();
 		var config = require('./config/config');
@@ -157,27 +152,19 @@ module.exports = function(grunt) {
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 
-	// Default task(s).
 	grunt.registerTask('default', ['lint', 'concurrent:default']);
 
-	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
 
-	// Secure task(s).
 	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
 
-	// Lint task(s).
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
-	// Build task(s).
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
 
-	// Server tests task.
 	grunt.registerTask('test-server', ['env:test', 'mochaTest']);
 
-	// Client tests task.
 	grunt.registerTask('test-client', ['env:test', 'karma:unit']);
 
-	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 };

@@ -1,6 +1,5 @@
 'use strict';
 
-// Products controller
 angular.module('products').controller('ProductsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Products', 'Categories', '$filter',
 	function($scope, $stateParams, $location, Authentication, Products, Categories, $filter) {
 		$scope.authentication = Authentication;
@@ -9,12 +8,10 @@ angular.module('products').controller('ProductsController', ['$scope', '$statePa
 		$scope.pageSize = 10;
 		$scope.offset = 0;
 
-		// Page changed handler
 		$scope.pageChanged = function() {
 			$scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
 		};
 
-		// Create new Product
 		$scope.create = function() {
 			var product = new Products ({
 				name: this.name,
@@ -25,18 +22,15 @@ angular.module('products').controller('ProductsController', ['$scope', '$statePa
 				unitsOnOrder: this.unitsOnOrder
 			});
 
-			// Redirect after save
 			product.$save(function(response) {
 				$location.path('products/' + response._id);
 
-				// Clear form fields
 				$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
-		// Remove existing Product
 		$scope.remove = function(product) {
 			if ( product ) {
 				product.$remove();
@@ -53,7 +47,6 @@ angular.module('products').controller('ProductsController', ['$scope', '$statePa
 			}
 		};
 
-		// Update existing Product
 		$scope.update = function() {
 			var product = $scope.product;
 			product.category = product.category._id;
@@ -66,11 +59,9 @@ angular.module('products').controller('ProductsController', ['$scope', '$statePa
 		};
 
 		var appendCategory = function appendCategory(p) {
-			// You could substitue use of filter here with underscore etc.
 			p.category = $filter('filter')($scope.categories, {_id: p.category})[0];
 		};
 
-		// Find a list of Products
 		$scope.find = function() {
 			Products.query(function loadedProducts(products) {
 				products.forEach(appendCategory);
@@ -78,14 +69,12 @@ angular.module('products').controller('ProductsController', ['$scope', '$statePa
 			});
 		};
 
-		// Find existing Product
 		$scope.findOne = function() {
 			$scope.product = Products.get({
 				productId: $stateParams.productId
 			}, appendCategory);
 		};
 
-		// Search for a product
 		$scope.productSearch = function(product) {
 			$location.path('products/' + product._id);
 		};

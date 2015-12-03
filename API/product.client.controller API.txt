@@ -1,0 +1,39 @@
+Product.client.controller API
+	controller
+	- check authentication
+	- set category
+	- set currentpage
+	- set items per page
+	- set offset ( paginatoin)
+
+	pageChanged
+	- recalculate offset
+
+	create product
+	- set name
+	- set category
+	- set quantity per unit
+	- set unitprice
+	- set units in stock
+	- set units on order
+	- save the product
+	
+	remove product
+	- verify product
+	- delete product in products
+
+	update product
+	- get product
+	- verify product
+
+	append category
+	- search category
+
+	find product
+	- get product out of the category
+	
+	find one product
+	- get product with ID
+	
+	search product
+	- get product with ID

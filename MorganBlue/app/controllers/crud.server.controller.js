@@ -59,7 +59,7 @@ module.exports = function(modelName, sortBy) {
 		list: function(req, res) {
 			var query = {};
 			if (req.query.filter) {
-				// TODO: extend this to handle multiple filters
+
 				query = req.query.filter;
 			}
 

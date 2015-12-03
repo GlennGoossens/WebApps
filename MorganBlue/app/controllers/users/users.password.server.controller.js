@@ -18,14 +18,14 @@ var _ = require('lodash'),
  */
 exports.forgot = function(req, res, next) {
 	async.waterfall([
-		// Generate random token
+
 		function(done) {
 			crypto.randomBytes(20, function(err, buffer) {
 				var token = buffer.toString('hex');
 				done(err, token);
 			});
 		},
-		// Lookup user by username
+
 		function(token, done) {
 			if (req.body.username) {
 				User.findOne({
@@ -63,7 +63,7 @@ exports.forgot = function(req, res, next) {
 				done(err, emailHTML, user);
 			});
 		},
-		// If valid email, send reset email using service
+
 		function(emailHTML, user, done) {
 			var smtpTransport = nodemailer.createTransport(config.mailer.options);
 			var mailOptions = {
@@ -109,7 +109,7 @@ exports.validateResetToken = function(req, res) {
  * Reset password POST from email token
  */
 exports.reset = function(req, res, next) {
-	// Init Variables
+
 	var passwordDetails = req.body;
 
 	async.waterfall([
@@ -165,7 +165,7 @@ exports.reset = function(req, res, next) {
 				done(err, emailHTML, user);
 			});
 		},
-		// If valid email, send reset email using service
+
 		function(emailHTML, user, done) {
 			var smtpTransport = nodemailer.createTransport(config.mailer.options);
 			var mailOptions = {
@@ -188,7 +188,7 @@ exports.reset = function(req, res, next) {
  * Change Password
  */
 exports.changePassword = function(req, res) {
-	// Init Variables
+
 	var passwordDetails = req.body;
 
 	if (req.user) {

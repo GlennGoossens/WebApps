@@ -8,7 +8,7 @@ var passport = require('passport'),
 	User = require('mongoose').model('User');
 
 module.exports = function() {
-	// Use basic strategy
+
 	passport.use(new BasicStrategy({
 			usernameField: 'username',
 			passwordField: 'password'
